@@ -1,0 +1,12 @@
+- update - then hit save and will not update the values in the list properly
+- remove - remove the message after successfully removing items
+
+- create function
+- decide value objects needed
+- props total
+- props data
+- props callback
+- changes in store
+- store to props
+- callbacks
+- location

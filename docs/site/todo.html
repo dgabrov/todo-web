@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>To-Do - List</title>
+
+    <link href="static/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+    <a routerLink="/" class="navbar-brand" href="#">To-Do</a>
+    <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+            <a class="nav-link" href="#">Login</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#">Logout</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#">To-Do</a>
+        </li>
+    </ul>
+</nav>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12 d-flex justify-content-left align-items-end flex-wrap">
+            <h1>To-Do</h1>
+        </div>
+        <div class="col-12 d-flex justify-content-left align-items-end flex-wrap">
+            <label for="search" class="m-0 mt-2">Search</label>
+        </div>
+        <div class="col-12 d-flex justify-content-left align-items-center flex-wrap">
+            <div class="form-group m-0">
+                <input type="text" class="form-control" id="search">
+            </div>
+            <button type="submit" class="ml-3 btn border btn-primary btn-sm">Search</button>
+            <button type="submit" class="btn border btn-sm ml-3">Current</button>
+            <button type="submit" class="btn border btn-sm ml-1">Future</button>
+            <button type="submit" class="btn border btn-sm ml-1">Trim</button>
+            <button type="submit" class="btn border btn-sm ml-1">Clear</button>
+            <button type="submit" class="btn border btn-sm ml-1">Help</button>
+            <div class="font-weight-bold text-danger ml-2 mr-2 text-nowrap">Pending: 25</div>
+            <div class="font-weight-bold text-success text-nowrap">Completed: 0</div>
+        </div>
+        <div class="col-12">
+            <table class="table table-sm table-bordered mt-3">
+                <thead>
+                <tr>
+                    <td class="text-nowrap">Nr</td>
+                    <td class="text-nowrap"><input type="checkbox"/></td>
+                    <td class="text-nowrap">Edit</td>
+                    <td class="text-nowrap">Login</td>
+                    <td class="text-nowrap">Project</td>
+                    <td class="text-nowrap">Context</td>
+                    <td class="w-100">Comments</td>
+                    <td class="text-nowrap">Ready?</td>
+                    <td class="text-nowrap">Priority</td>
+                    <td class="text-nowrap">Due</td>
+                    <td class="text-nowrap">Added</td>
+                    <td class="text-nowrap">Updated</td>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td class="text-nowrap">1</td>
+                    <td class="text-nowrap"><input type="checkbox"/></td>
+                    <td class="text-nowrap"><a href="#">Edit</a></td>
+                    <td class="text-nowrap">dgabrov</td>
+                    <td class="text-nowrap">proj</td>
+                    <td class="text-nowrap"></td>
+                    <td> asljf laskjdf lsakjf lsakjdf laskdfj laskfjd laskdfj lsakdfj laskdfjas
+                        salkdjf lsakjdf lsakjdf lskajdf lkasjdf lskadjf lsakdfj lsakdjf slakdfj slakdfjlaskdf
+                        lsakdjf laskjdf lsakjdfl kasjdf lksajdf lkasdjf lksadjf lkasjdf lksdfj lksadf
+                        lskdjf laskdjfl sakdjf lsakdjf laskdfj lsakdfj lsakdfj lsakdfj lsakdfj lsakdf
+                        <br/>
+                        ksdjf lksdajf lkasjf lsakdj flkasjdf lkasjdf lkasjdf laksjdfl ksadjf lksadfj
+                        sdalfkj saldk fjasldkf jaslkdf jslakdf jaslkdf jlskadfj slakdfj lsakdf
+                    </td>
+                    <td class="text-nowrap text-success font-weight-bold text-center">Yes</td>
+                    <td class="text-nowrap text-center">12</td>
+                    <td class="text-nowrap">Jan 12, 2020</td>
+                    <td class="text-nowrap">Jan 11, 2020</td>
+                    <td class="text-nowrap">Jan 9, 2020</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- the bottom part with quick add item -->
+    <div class="row">
+        <div class="col-lg-6 col-12 mb-3">
+            <button type="submit" class="btn border btn-sm">Remove</button>
+            <button type="submit" class="btn border btn-sm">Bulk Changes</button>
+        </div>
+    </div>
+    <div class="row p-1 m-1 mt-4">
+        <h4>Quick Add</h4>
+    </div>
+    <div class="row p-1 border rounded bg-light m-1">
+        <div class="col-lg-2 col-12 form-group">
+            <label for="iduser">User</label>
+            <select name="user" id="iduser" class="form-control">
+                <option value="dgabrov">Daniel G</option>
+                <option value="work">Work account</option>
+            </select>
+        </div>
+        <div class="col-lg-2 col-12 form-group">
+            <label for="idproject">Project</label>
+            <input type="text" class="form-control" id="idproject">
+        </div>
+        <div class="col-lg-2 col-12 form-group">
+            <label for="idcontext">Context</label>
+            <input type="text" class="form-control" id="idcontext">
+        </div>
+        <div class="col-lg-2 col-12 form-group">
+            <label for="idpriority">Priority</label>
+            <input type="text" class="form-control" id="idpriority">
+        </div>
+        <div class="col-lg-2 col-12 form-group">
+            <label for="iddue">Due</label>
+            <input type="text" class="form-control" id="iddue">
+        </div>
+        <div class="col-lg-12 col-12 form-group">
+            <label for="idcomments">Comments</label>
+            <textarea type="text" class="form-control" id="idcomments" rows="5"></textarea>
+        </div>
+    </div>
+    <div class="row m-1">
+        <div class="col-lg-6 col-12 p-1 mb-4">
+            <button type="submit" class="btn btn-primary border">Add</button>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>To-Do - List</title>
+
+    <link href="static/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+    <a routerLink="/" class="navbar-brand" href="#">To-Do</a>
+    <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+            <a class="nav-link" href="#">Login</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#">Logout</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#">To-Do</a>
+        </li>
+    </ul>
+</nav>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12 d-flex justify-content-left align-items-end flex-wrap">
+            <h1>Items</h1>
+        </div>
+        <div class="col-12 d-flex justify-content-left align-items-end flex-wrap">
+            <label for="search" class="m-0 mt-2">Search</label>
+        </div>
+        <div class="col-12 d-flex justify-content-left align-items-center flex-wrap">
+            <div class="form-group m-0">
+                <input type="text" class="form-control" id="search">
+            </div>
+            <button type="submit" class="ml-3 btn border btn-primary btn-sm">Search</button>
+            <button type="submit" class="btn border btn-sm ml-3">Flag</button>
+        </div>
+        <div class="col-12">
+            <table class="table table-sm table-bordered mt-3">
+                <thead>
+                <tr>
+                    <td class="text-nowrap">Nr</td>
+                    <td class="text-nowrap"><input type="checkbox"/></td>
+                    <td class="text-nowrap">Login</td>
+                    <td class="text-nowrap">Edit</td>
+                    <td class="w-100">Name</td>
+                    <td class="text-nowrap">Category</td>
+                    <td class="text-nowrap">Flag</td>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td class="text-nowrap">1</td>
+                    <td class="text-nowrap"><input type="checkbox"/></td>
+                    <td class="text-nowrap">tester</td>
+                    <td class="text-nowrap"><a href="#">Edit</a></td>
+                    <td class="text-nowrap">
+                        <div>
+                            <a href="#">Expand</a> this is the name of the item
+                        </div>
+                        <div>
+                            This is the expanded item hqewljsalkdjf alkj falskjf alskjfd alskjfd als
+                            asdfljka sdflk ajslf kajslfdk jaslfdk jaslkfdjas
+                            aslkjfdlaskjdf laskjf laskjf laskj flaksjf laksjfdl
+                            <br/><br/>
+                            salkjfd alskdjf laskjf laksjf lkasjf lkasjf lkasjf lkasjfd lksa
+                            salkdjf laskjfd laskjfdl aksjfdlkasjlf kasjlfksajlf kajsl kfs
+                            <div class="mt-1">
+                                Attachments: none
+                            </div>
+                            <div>
+                                <ol>
+                                    <li><input type="checkbox"> <a href="#">edit</a> this is hte first <a href="#">alfa.txt</a></li>
+                                    <li><input type="checkbox"> <a href="#">edit</a> the second <a href="#">alfa.txt</a></li>
+                                    <li><input type="checkbox"> <a href="#">edit</a> the third <a href="#">alfa.txt</a></li>
+                                </ol>
+                            </div>
+                            <div>
+                                <a href="#">add</a>
+                                <a href="#">up</a>
+                                <a href="#">down</a>
+                                <a href="#">unselect</a>
+                            </div>
+                        </div>
+
+                    </td>
+                    <td class="text-nowrap">categ here</td>
+                    <td class="text-nowrap">Yes</td>
+                </tr>
+                <tr>
+                    <td class="text-nowrap">1</td>
+                    <td class="text-nowrap"><input type="checkbox"/></td>
+                    <td class="text-nowrap">tester</td>
+                    <td class="text-nowrap"><a href="#">Edit</a></td>
+                    <td class="text-nowrap">this is the name of the item</td>
+                    <td class="text-nowrap">categ here</td>
+                    <td class="text-nowrap">Yes</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- the bottom part with quick add item -->
+    <div class="row">
+        <div class="col-lg-6 col-12 mb-3">
+            <button type="submit" class="btn border btn-sm">Remove</button>
+            <button type="submit" class="btn border btn-sm">Add</button>
+            <button type="submit" class="btn border btn-sm ml-2">Remove Attach</button>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

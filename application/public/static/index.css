@@ -1,0 +1,9 @@
+td.due-value div {
+    width: 6em;
+}
+
+.due-value input {
+    width: 90%;
+    margin: 0;
+    padding: 1px;
+}

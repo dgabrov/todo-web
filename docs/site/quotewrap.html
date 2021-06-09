@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>To-Do - Edit</title>
+
+    <link href="static/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+    <a routerLink="/" class="navbar-brand" href="#">To-Do</a>
+    <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+            <a class="nav-link" href="#">Login</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#">Logout</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#">To-Do</a>
+        </li>
+    </ul>
+</nav>
+
+<div class="container-fluid">
+    <div class="col-lg-6 col-md-6 col-12">
+        <div class="row">
+            <div class="col-12 form-group">
+                <h1>Quote Message</h1>
+            </div>
+        </div>
+        <div class="row d-flex flex-row align-items-center">
+            <div class="col-3 form-group">
+                <label for="idColumns">Columns</label>
+                <input type="text" class="form-control" id="idColumns">
+            </div>
+            <div class="col-3 form-group">
+                <label for="idQuote">Quote</label>
+                <input type="text" class="form-control" id="idQuote">
+            </div>
+            <div class="col-3 form-group">
+                <input type="checkbox" class="ml-2" id="idAddQuote">
+                <label for="idAddQuote">Add Quote</label>
+            </div>
+            <div class="col-3 form-group">
+                <input type="checkbox" class="ml-2" id="idAddBlankLine">
+                <label for="idAddBlankLine">Add Blank Line</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 form-group">
+                <label for="idMessage">Message</label>
+                <textarea rows="12" class="form-control" id="idMessage"></textarea>
+            </div>
+            <div class="col-12 form-group">
+                <button type="submit" class="btn btn-primary border">Process</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

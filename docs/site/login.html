@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>ToDo - Login</title>
+
+    <link href="static/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+    <a routerLink="/" class="navbar-brand" href="#">To-Do</a>
+    <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+            <a class="nav-link" href="#">Login</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#">Logout</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#">To-Do</a>
+        </li>
+    </ul>
+</nav>
+<main role="main">
+    <div class="jumbotron">
+        <div class="container-fluid">
+            <h1 class="display-3">To-Do</h1>
+            <p>To-Do list manager</p>
+        </div>
+    </div>
+
+    <div class="container-fluid">
+        <div class="row d-flex justify-content-center">
+            <div class="col-sm-12 col-md-4 col-lg-4 border rounded p-3">
+                <div class="form-group">
+                    <label for="loginEdit">Login</label>
+                    <input type="text" class="form-control" id="loginEdit">
+                </div>
+                <div class="form-group">
+                    <label for="pwd">Password</label>
+                    <input type="password" class="form-control" id="pwd">
+                </div>
+                <button type="submit" class="btn btn-primary border">Login</button>
+            </div>
+        </div>
+    </div>
+</main>
+
+</body>
+</html>

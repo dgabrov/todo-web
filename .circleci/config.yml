@@ -1,0 +1,25 @@
+version: 2.1
+workflows:
+  starter:
+    jobs:
+      - build:
+          filters:
+            branches:
+              only: master
+
+jobs:
+  build:
+    machine:
+      image: ubuntu-2004:202010-01
+    steps:
+      - checkout
+      - run: echo ${CIRCLE_BUILD_NUM}
+      - run: cd application && npm install
+      - run: cd application && npm run build
+      - run: node -v
+      - run: npm -v
+      - run: docker build . -t dgb9/todo-web:1.0.${CIRCLE_BUILD_NUM}
+      - run: docker image ls
+      - run: echo ${dockerpassword} | docker login -u ${dockerlogin} --password-stdin
+      - run: docker image push dgb9/todo-web:1.0.${CIRCLE_BUILD_NUM}
+

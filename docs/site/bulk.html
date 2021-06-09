@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>To-Do - Edit</title>
+
+    <link href="static/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+    <a routerLink="/" class="navbar-brand" href="#">To-Do</a>
+    <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+            <a class="nav-link" href="#">Login</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#">Logout</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#">To-Do</a>
+        </li>
+    </ul>
+</nav>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <h1>Confirm Bulk Change</h1>
+            <p>Please select the bulk change parameters and confirm below</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <table class="table table-sm table-bordered">
+                <thead>
+                <tr>
+                    <td class="text-nowrap">Nr</td>
+                    <td class="text-nowrap">Login</td>
+                    <td class="text-nowrap">Completed</td>
+                    <td class="text-nowrap">Project</td>
+                    <td class="text-nowrap">Context</td>
+                    <td class="w-100">Comments</td>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td class="text-nowrap">1</td>
+                    <td class="text-nowrap">dgabrov</td>
+                    <td class="text-nowrap font-weight-bold text-danger text-center">No</td>
+                    <td class="text-nowrap">de project</td>
+                    <td class="text-nowrap">de context</td>
+                    <td>comments slakdlaskjf laskjf lsakjf laskjf lsakjdf lsakf
+                    sadlf jasldkfj salkdfj laskdfj laskdfj laskdfjlaskdjfl ask
+                    sldkf jaslkdfj lsakdjf lsakdjf lsakjdf laskjdfkl sadflaskd f
+                    saldkfj lsakdjf lsakdfj laskdfjlsakdjfl sakdjf lksajdfl ksa
+                    slkdfj lsakdjf lsakdjf lsakdjf lsakdjf lkasdjflksadjf
+                    sladkjf lsakdfj lsakdjf lksadjf lksa</td>
+                </tr>
+                <tr>
+                    <td class="text-nowrap">2</td>
+                    <td class="text-nowrap">dgabrov</td>
+                    <td class="text-nowrap font-weight-bold text-success text-center">Yes</td>
+                    <td class="text-nowrap">de project</td>
+                    <td class="text-nowrap">de context</td>
+                    <td>comments slakdlaskjf laskjf lsakjf laskjf lsakjdf lsakf
+                    sadlf jasldkfj salkdfj laskdfj laskdfj laskdfjlaskdjfl ask
+                    sldkf jaslkdfj lsakdjf lsakdjf lsakjdf laskjdfkl sadflaskd f
+                    saldkfj lsakdjf lsakdfj laskdfjlsakdjfl sakdjf lksajdfl ksa
+                    slkdfj lsakdjf lsakdjf lsakdjf lsakdjf lkasdjflksadjf
+                    sladkjf lsakdfj lsakdjf lksadjf lksa</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="row m-1">
+        <div class="col-12 col-md-6 col-lg-4">
+            <table class="table table-sm table-bordered">
+                <tbody>
+                <tr>
+                    <td class="align-middle"><input type="checkbox"/></td>
+                    <td class="align-middle">Owner:</td>
+                    <td class="w-100">
+                        <select class="form-control">
+                            <option>Daniel Gabroveanu (dgabrov)</option>
+                            <option>TD Account (td)</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="align-middle"><input type="checkbox"/></td>
+                    <td class="align-middle">Context:</td>
+                    <td><input type="text" class="form-control"></td>
+                </tr>
+                <tr>
+                    <td class="align-middle"><input type="checkbox"/></td>
+                    <td class="align-middle">Project:</td>
+                    <td><input type="text" class="form-control"></td>
+                </tr>
+                <tr>
+                    <td class="align-middle"><input type="checkbox"/></td>
+                    <td class="align-middle">Due:</td>
+                    <td><input type="text" class="form-control"></td>
+                </tr>
+                <tr>
+                    <td class="align-middle"><input type="checkbox"/></td>
+                    <td class="align-middle">Priority:</td>
+                    <td><input type="text" class="form-control"></td>
+                </tr>
+                <tr>
+                    <td colspan="3">
+                        <button class="btn btn-primary border">Submit</button>
+                        <button class="btn btn-default border">Cancel</button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
