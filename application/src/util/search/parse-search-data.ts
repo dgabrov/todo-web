@@ -9,11 +9,19 @@ const IS_PENDING = "p";
 const PREFIX_DUE = "due:";
 const PREFIX_PROJECT = "proj:";
 const PREFIX_CONTEXT = "ctx:";
+const PREFIX_LOGIN = 'login:';
 
 const EMPTY_DUE_DATE = "none";
 
 const processGeneral = (word: string, res: SearchServerData) => {
     res.general.push(word);
+}
+
+const processLogin = (word: string, res: SearchServerData) => {
+    const str = word.substring(PREFIX_LOGIN.length);
+    const arr: string[] = str.split(',');
+
+    res.login.push(...arr);
 }
 
 const processProject = (word: string, res: SearchServerData) => {
@@ -90,6 +98,7 @@ export const parseSearchData = (input: string) : SearchServerData => {
         context: [],
         dueInterval: [],
         dueNull: false,
+        login: [],
         general: [],
         project: [],
         completed: undefined
@@ -105,6 +114,9 @@ export const parseSearchData = (input: string) : SearchServerData => {
 
         if (word.startsWith(PREFIX_IS)) {
             processIs(word, res);
+        }
+        else if(word.startsWith(PREFIX_LOGIN)){
+            processLogin(word, res);
         }
         else if (word.startsWith(PREFIX_DUE)) {
             processDue(word, res);
