@@ -115,7 +115,7 @@ const Todo = (props: TodoProps) => {
     const cols = showAddedUpdated ? 8 : 6;
 
     let itemRows = [<tr key={'no-items-key'}>
-        <td colSpan={4}></td>
+        <td colSpan={4}>&nbsp;</td>
         <td colSpan={cols}>No items...</td>
     </tr>];
 
