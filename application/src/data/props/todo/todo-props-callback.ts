@@ -9,6 +9,8 @@ export default interface TodoPropsCallback {
 
     triggerSearch(): void;
 
+    searchClick(newSearchString: string): void;
+
     current(): void;
 
     future(): void;

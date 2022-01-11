@@ -12,3 +12,5 @@ export const HOT_FIELD_PRIORITY = 'priority';
 export const HOT_FIELD_DUE = 'due';
 
 export const CONFIG_FILE_URL = '/config/config.json';
+
+export const NONE = 'none';

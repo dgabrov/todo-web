@@ -4,7 +4,7 @@ import Store from "../data/store/store";
 import TodoPropsData from "../data/props/todo/todo-props-data";
 import TodoPropsCallback from "../data/props/todo/todo-props-callback";
 import {connect} from "react-redux";
-import {HOT_FIELD_DUE, HOT_FIELD_PRIORITY, textAreaHeightSmall} from "../util/constants";
+import {NONE, HOT_FIELD_DUE, HOT_FIELD_PRIORITY, textAreaHeightSmall} from "../util/constants";
 import PersonData from "../data/value/person-data";
 import {formatDate, processKeyDown, setFocus} from "../util/util-ui-functions";
 import AddTodoData from "../data/value/add-todo-data";
@@ -27,6 +27,87 @@ import {createEffectSavePriority} from "../reducer/effects/effect-save-priority"
 import {createEffectSaveDue} from "../reducer/effects/effect-save-due";
 import {createActionToggleShowAddedUpdated} from "../reducer/actions/action-toggle-show-added-updated";
 
+
+const getNoItemsRows = (cols: number) => {
+    return [<tr key={'no-items-key'}>
+        <td colSpan={4}>&nbsp;</td>
+        <td colSpan={cols}>No items...</td>
+    </tr>];
+}
+
+const contextProjectClick = (isContext: boolean, key: string, search: string, searchCallback: (srString: string) => void ) => {
+    return (event: React.MouseEvent) => {
+        event.preventDefault();
+        event.stopPropagation();
+
+        // tokenize search string
+        let sr = search || '';
+        sr = sr.trim();
+        const prefix = isContext ? 'ctx:' : 'proj:';
+        const words = sr.split(' ')
+            // trim the items
+            .map((item) => {
+                return item.trim();
+            })
+            // find tokens that start with ctx or proj and remove them
+            .filter((item) => {
+                return !item.startsWith(prefix);
+            });
+
+        // basically adding at the end the required info; we will be able to filter one ctx and one proj \
+        // at one time using those links at the top of the page;
+        words.push(prefix + key);
+
+        // put together the new search string
+        const newSearchString = words.join(' ');
+        searchCallback(newSearchString); // this trigger a side effect and proceeds
+    }
+}
+
+const getKeyList = (isContext: boolean, items: TodoProps) => {
+    const arr = items?.todoItems;
+
+    let res: any[] = [];
+    const currentSet: { [key: string]: string; } = {};
+    let hasEmpty = false;
+
+    if (arr?.length > 0) { // the array is being filled out
+        arr?.forEach((item) => {
+            let key = isContext ? item.contextCd : item.projectCd;
+            key = key || '';
+            key = key.trim();
+
+            if (key === '') {
+                hasEmpty = true;
+            } else {
+                currentSet[key] = '';
+            }
+        });
+
+        // get the keys
+        const keys = Object.keys(currentSet).sort();
+        if (hasEmpty) {
+            keys.splice(0, 0, NONE);
+        }
+
+        res = keys.map((key) => {
+            return <a href="/" key={key} type='submit' className="ml-1"
+                      onClick={contextProjectClick(isContext, key, items.search, items.searchClick)}>
+                {key}
+            </a>;
+        });
+    }
+
+    return res;
+}
+
+const getCtxList = (items: TodoProps) => {
+    return getKeyList(true, items);
+}
+
+const getProjectList = (items: TodoProps) => {
+    return getKeyList(false, items);
+}
 
 const Todo = (props: TodoProps) => {
 
@@ -114,10 +195,7 @@ const Todo = (props: TodoProps) => {
 
     const cols = showAddedUpdated ? 8 : 6;
 
-    let itemRows = [<tr key={'no-items-key'}>
-        <td colSpan={4}>&nbsp;</td>
-        <td colSpan={cols}>No items...</td>
-    </tr>];
+    let itemRows = getNoItemsRows(cols);
 
     if (props.todoItems.length > 0) {
         itemRows = props.todoItems.map((item) => {
@@ -308,6 +386,12 @@ const Todo = (props: TodoProps) => {
                     <div className="font-weight-bold text-success text-nowrap">Completed: {getCompleted()}</div>
                 </div>
                 <div className="col-12">
+                    ctx: {getCtxList(props)}
+                </div>
+                <div className="col-12">
+                    proj: {getProjectList(props)}
+                </div>
+                <div className="col-12">
                     <table className="table table-sm table-striped table-bordered mt-3">
                         <thead>
                         <tr>
@@ -337,7 +421,6 @@ const Todo = (props: TodoProps) => {
                     </table>
                 </div>
             </div>
-
             <div className="row">
                 <div className="col-lg-6 col-12 mb-3">
                     <button type="submit" className="btn border btn-sm" onClick={props.remove}>Remove</button>
@@ -471,6 +554,9 @@ const dispatch = (dispatch: any): TodoPropsCallback => {
         },
         remove: () => {
             dispatch(createActionRemoveTodo());
+        },
+        searchClick: (newSearchString: string) => {
+            dispatch(createEffectSearch(newSearchString));
         },
         triggerSearch: () => {
             dispatch(createEffectSearch());
