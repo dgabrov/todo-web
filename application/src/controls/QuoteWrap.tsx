@@ -31,7 +31,9 @@ const QuoteWrap = (props: QuoteProps) => {
             setMessage(items.join("\n"));
         }
         catch (err){
-            props.triggerError('' + err.message);
+            const message: string = err instanceof Error ? err.message : '';
+            props.triggerError(message);
+
         }
     }
 

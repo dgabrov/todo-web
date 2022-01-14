@@ -8,4 +8,5 @@ export default interface TodoPropsBaseData {
     comments: string;
     editDueId: string|null;
     editPriorityId: string|null;
+    multiline: boolean;
 }

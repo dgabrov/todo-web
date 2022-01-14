@@ -64,7 +64,8 @@ const createEmptyTodoPropsBaseData = () : TodoPropsBaseData => {
         due: "",
         comments: "",
         editDueId: null,
-        editPriorityId: null
+        editPriorityId: null,
+        multiline: false
     }
 }
 

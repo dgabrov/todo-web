@@ -11,6 +11,7 @@ import {CompleteItemData} from "../data/item/complete-item-data";
 import {SearchData} from "../data/search/search-data";
 import {ItemData} from "../data/item/item-data";
 import {AttachmentData} from "../data/item/attachment-data";
+import {MultipleTodoData} from "../data/value/multiple-todo-data";
 
 const proceedFetch = async (url: string, body: string|undefined, isPost: boolean, addToken: boolean): Promise<any> => {
     const config: ConfigData = getConfig();
@@ -162,6 +163,13 @@ export const getTodo = async(todoItemId: string) : Promise<TodoData|null> => {
 
     const data = await proceedFetch('/retrieveTodo', body, true, true);
     return data.todo;
+}
+
+export const multipleAddTodo = async (data: MultipleTodoData) : Promise<TodoData[]> => {
+    const body = JSON.stringify(data);
+    const array = await proceedFetch('/multipleTodo', body, true, true);
+
+    return array as TodoData[];
 }
 
 export const updateBulkData = async (data: BulkUpdateData) : Promise<TodoData[]> => {
