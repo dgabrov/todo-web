@@ -86,6 +86,7 @@ import {
     ACTION_TOGGLE_SHOW_ADDED_UPDATED,
     createReducerToggleShowAddedUpdated
 } from "./actions/action-toggle-show-added-updated";
+import {ACTION_AFTER_MULTIPLE_ADD, createReducerAfterMultipleAdd} from "./actions/action-after-multiple-add";
 
 
 const reducerMap: { [key: string]: any } = {};
@@ -139,6 +140,7 @@ reducerMap[ACTION_REFRESH_STORAGE_ITEM] = createReducerRefreshStorageItem;
 reducerMap[ACTION_EXPAND_ALL] = createReducerExpandAll;
 reducerMap[ACTION_TRIM_ITEMS] = createReducerTrimItems;
 reducerMap[ACTION_TOGGLE_SHOW_ADDED_UPDATED] = createReducerToggleShowAddedUpdated;
+reducerMap[ACTION_AFTER_MULTIPLE_ADD] = createReducerAfterMultipleAdd;
 
 
 

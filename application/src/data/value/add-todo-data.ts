@@ -6,4 +6,5 @@ export default interface AddTodoData {
     priority: string;
     due: string;
     comments: string;
+    multiline: boolean;
 }

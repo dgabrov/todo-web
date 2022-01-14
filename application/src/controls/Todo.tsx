@@ -128,6 +128,7 @@ const Todo = (props: TodoProps) => {
     let personsCombo: HTMLSelectElement | null = null;
     let priorityField: HTMLInputElement | null = null;
     let projectField: HTMLInputElement | null = null;
+    let multilineCheckbox: HTMLInputElement | null = null;
 
     const onEditPriorityCancel = () => {
         props.onEditPriorityCancel()
@@ -166,7 +167,8 @@ const Todo = (props: TodoProps) => {
                 personId: personsCombo!!.value,
                 priority: priorityField!!.value,
                 project: projectField!!.value,
-                search: searchField!!.value
+                search: searchField!!.value,
+                multiline: multilineCheckbox!!.checked
             });
     }
 
@@ -501,6 +503,12 @@ const Todo = (props: TodoProps) => {
                               }}
                     />
                 </div>
+                <div className="col-lg-12 col-12 form-group">
+                    <label htmlFor="idmultiline">Multi lines</label>
+                    <input type="checkbox" className={'ml-3'} id="idmultiline"  checked={props.multiline} onChange={onFieldsUpdate} ref={(field) => {
+                        multilineCheckbox = field;
+                    }}/>
+                </div>
             </div>
             <div className="row m-1">
                 <div className="col-lg-6 col-12 p-1 mb-4">
@@ -531,7 +539,8 @@ const storeToProps = (store: Store): TodoPropsData => {
         todoItems: store.todo,
         editDueId: details.editDueId,
         editPriorityId: details.editPriorityId,
-        showAddedUpdated: store.showAddedUpdated
+        showAddedUpdated: store.showAddedUpdated,
+        multiline: details.multiline
     }
 }
 

@@ -30,7 +30,8 @@ export const createReducerOnFieldsUpdate = (store: Store | undefined, action: Ac
         personId: data.personId,
         comments: data.comments,
         context: data.context,
-        due: data.due
+        due: data.due,
+        multiline: data.multiline
     }
 
     return {...store!!, ...{todoDetails}};
