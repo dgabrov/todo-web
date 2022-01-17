@@ -14,6 +14,7 @@ jobs:
     steps:
       - checkout
       - run: echo ${CIRCLE_BUILD_NUM}
+      - run: docker run --workdir /appbuild -v $(pwd):/appbuild node:17-alpine3.14 /bin/sh build.sh
       - run: cd application && npm install
       - run: cd application && npm run build
       - run: node -v
