@@ -18,7 +18,6 @@ import {createActionRemoveAttachment} from "../../reducer/actions/action-remove-
 import {createActionEditStorageItem} from "../../reducer/actions/action-edit-storage-item";
 import {v4} from "uuid";
 import {createActionEditAttachment} from "../../reducer/actions/action-edit-attachment";
-import {createEffectDownload} from "../../reducer/effects/effect-download";
 import {processKeyDown, setFocus} from "../../util/util-ui-functions";
 import {createActionClearItems} from "../../reducer/actions/action-clear-items";
 import {createEffectFlaggedItems} from "../../reducer/effects/effect-flagged-items";
@@ -165,9 +164,6 @@ const dispatch = (dispatch: any): ItemsPropsCallback => {
         },
         editAttachment: (attachmentId: string, itemId: string) => {
             dispatch(createActionEditAttachment(false, attachmentId, itemId));
-        },
-        downloadAttachment: (attachmentId, fileName) => {
-            dispatch(createEffectDownload(attachmentId, fileName));
         },
         removeAttachment: () => {
             dispatch(createActionRemoveAttachment());

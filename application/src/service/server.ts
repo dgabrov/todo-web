@@ -184,16 +184,3 @@ export const updateDue = async (todoItemId: string, due: Date|null): Promise<boo
     return await proceedFetch('/updateDue', body, true, true);
 }
 
-export const download = async (attachmentId : string) : Promise<Blob> => {
-    const config: ConfigData = getConfig();
-
-    const response = await fetch(config.apiUrl + '/processDownload', buildConfig(true, true, JSON.stringify({ids: [attachmentId]})));
-    const blob = await response.blob();
-
-    if (response.status >= 400) {
-        throw await blob.text();
-    }
-
-    return blob;
-
-}

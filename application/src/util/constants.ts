@@ -14,3 +14,5 @@ export const HOT_FIELD_DUE = 'due';
 export const CONFIG_FILE_URL = '/config/config.json';
 
 export const NONE = 'none';
+
+export const TOKEN_COOKIE_NAME = 'token12';

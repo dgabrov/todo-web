@@ -5,6 +5,7 @@ import {ItemsProps} from "../../data/props/items/items-props";
 import {v4} from "uuid";
 import {formatDate} from "../../util/util-ui-functions";
 import {AttachmentData} from "../../data/item/attachment-data";
+import {getConfig} from "../../data/config/config-accessor";
 
 export const createEmptyResponseItems = () => {
     return (
@@ -121,6 +122,9 @@ export const createItemRow = (item: CompleteItemData, index: number, props: Item
     if (item.attachments.length > 0) {
         attachmentString = "";
 
+        const config = getConfig();
+        const apiUrl = config.apiUrl;
+
         const attachFields: any = [];
         item.attachments.forEach((att) => {
 
@@ -131,23 +135,18 @@ export const createItemRow = (item: CompleteItemData, index: number, props: Item
                 props.editAttachment(att.attachmentId, item.itemId);
             }
 
-            const attDownload = (event : any) => {
-                event.preventDefault();
-                event.stopPropagation();
-
-                props.downloadAttachment(att.attachmentId, att.fileName);
-            }
-
             const triggerSelectAttachment = (event : any) => {
                 props.triggerSelectAttachment(att.attachmentId);
             }
+
+            const attachmentUrl = `${apiUrl}/processDownload?id=${att.attachmentId}`
 
             attachFields.push(
                 <li key={att.attachmentId}>
                     <input type="checkbox" checked={attSelected.hasOwnProperty(att.attachmentId)} onChange={triggerSelectAttachment} />
                     <a className="ml-1 mr-1" href="/" onClick={attEdit}>edit</a>
                     {att.description}
-                    <a className="ml-1" href="/" onClick={attDownload}>{att.fileName}</a>
+                    <a className="ml-1" href={attachmentUrl}>{att.fileName}</a>
                     <span className={"dateAttachmentText"}> added:{formatDate(att.added)} updated:{formatDate(att.updated)}</span>
                 </li>
             );
