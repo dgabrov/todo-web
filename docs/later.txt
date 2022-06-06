@@ -1,0 +1,14 @@
+Web side
+done - upon login save cookie
+done - upon logout from all of them, delete cookie
+done - delete all mechanism to download files and put dummy request
+done - then put a well made link
+
+On the server side
+done - locate controller for downloading a file
+- see that it is working with get rather than post or anything else
+- set the file name there (content disposition)
+- see that it works
+- see how on Earth we set the name there so that we don't have issues afterwards
+
+

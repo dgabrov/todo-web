@@ -13,7 +13,6 @@ export interface ItemsPropsCallback {
     removeItem() : void;
 
     editAttachment(attachmentId: string, itemId: string) : void;
-    downloadAttachment(attachmentId: string, fileName: string) : void;
     removeAttachment() : void;
     addAttachment(attachmentId: string, itemId: string) : void;
     unselectAttachments(itemId: string) : void;
