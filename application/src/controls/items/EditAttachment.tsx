@@ -33,6 +33,24 @@ const EditAttachment = (props : EditAttachmentProps) : any => {
         props.submit(adding, attach, fileField.files);
     }
 
+    const progressBar = [];
+    if (props.showProgressBar) {
+
+        // calculate the percentage for the upload status
+        let progress = props.uploadProgress;
+        const total = progress.total
+        const loaded = progress.loaded
+        let percent = 0;
+        if (total !== 0) {
+            percent = loaded / total * 100;
+        }
+
+        // now we format the percent with two decimals
+        const formatted = percent.toFixed(2);
+
+        progressBar.push(<div>Progress: <strong>{formatted}</strong></div>);
+    }
+
     return (
         <div className="container-fluid">
             <div className="col-lg-6 col-md-6 col-12">
@@ -56,13 +74,16 @@ const EditAttachment = (props : EditAttachmentProps) : any => {
                                onKeyDown={processKeyDown(submit, props.cancel, false)}
                         />
                     </div>
+
+                    {progressBar}
+
                     <div className="col-12 form-group">
                         <button type="submit" className="btn btn-primary border" onClick={submit}>Submit</button>
                         <button type="submit" className="btn btn-default border" onClick={props.cancel}>Cancel</button>
                     </div>
                 </div>
             </div>
-        </div>    )
+        </div>    );
 }
 
 const storeToProps = (store: Store) : EditAttachmentPropsData => {
@@ -93,7 +114,9 @@ const storeToProps = (store: Store) : EditAttachmentPropsData => {
 
     return {
         adding,
-        attachment
+        attachment,
+        showProgressBar: store.showProgressBar,
+        uploadProgress: store.uploadProgress
     };
 }
 

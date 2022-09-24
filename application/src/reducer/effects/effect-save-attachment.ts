@@ -3,6 +3,8 @@ import {createActionSendMessage} from "../actions/action-send-message";
 import {AttachmentData} from "../../data/item/attachment-data";
 import {updateAttachment} from "../../service/server";
 import {createActionAfterUpdateAttachment} from "../actions/action-after-update-attachment";
+import {createActionShowHideProgressBar} from "../actions/action-show-hide-progress-bar";
+import {createActionUpdateProgress} from "../actions/action-update-progress";
 
 const processEffectSaveAttachment = async (dispatch: any, getStore : any,
                                            adding: boolean, attachment: AttachmentData,
@@ -19,7 +21,11 @@ const processEffectSaveAttachment = async (dispatch: any, getStore : any,
                 file = files[0];
             }
 
-            const attachResult: AttachmentData = await updateAttachment(adding, attachment, file);
+            dispatch(createActionShowHideProgressBar(true));
+            const attachResult: AttachmentData = await updateAttachment(adding, attachment, file, (info) => {
+                dispatch(createActionUpdateProgress(info));
+            });
+            dispatch(createActionShowHideProgressBar(false));
 
             // if call is ok, then proceed to update all the stuff and then go back
             dispatch(createActionAfterUpdateAttachment(attachResult, adding));
