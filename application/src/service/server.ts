@@ -12,6 +12,8 @@ import {SearchData} from "../data/search/search-data";
 import {ItemData} from "../data/item/item-data";
 import {AttachmentData} from "../data/item/attachment-data";
 import {MultipleTodoData} from "../data/value/multiple-todo-data";
+import axios from "axios";
+import UpdateUploadData from "../data/value/update-upload-data";
 
 const proceedFetch = async (url: string, body: string|undefined, isPost: boolean, addToken: boolean): Promise<any> => {
     const config: ConfigData = getConfig();
@@ -59,7 +61,7 @@ const buildConfig = (post: boolean, addToken: boolean, body: string|undefined) :
     return data;
 
  */
-export const updateAttachment = async (adding: boolean, attachment: AttachmentData, file: any|null): Promise<AttachmentData> => {
+export const updateAttachment = async (adding: boolean, attachment: AttachmentData, file: any|null, callback: (upload: UpdateUploadData)=> void|undefined): Promise<AttachmentData> => {
     const config: ConfigData = getConfig();
 
     const data = new FormData();
@@ -69,8 +71,21 @@ export const updateAttachment = async (adding: boolean, attachment: AttachmentDa
     data.append('data', JSON.stringify({adding, attachment}));
     const url = config.apiUrl + '/updateAttachment';
 
-    const response = await fetch(url, {method: 'POST', body: data});
-    const dt = await response.json();
+    const response = await axios.post(url, data, {onUploadProgress: (event) => {
+            if (event && event.total && event.loaded && typeof event.total === 'number' && typeof event.loaded === 'number' && callback) {
+                let total = event.total as number;
+                let loaded = event.loaded as number;
+
+                // prepare the upload data
+                let data : UpdateUploadData = {
+                    total, loaded
+                }
+
+                // invoke the callback for the data
+                callback(data);
+            }
+        }});
+    const dt = await response.data;
 
     if (response.status >= 400) {
         throw dt;

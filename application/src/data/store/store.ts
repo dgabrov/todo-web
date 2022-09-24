@@ -8,6 +8,7 @@ import AppState from "../value/app-state";
 import {StoreItemData} from "../item/store-item-data";
 import {EditItemData} from "../value/edit-item-data";
 import {EditAttachmentData} from "../value/edit-attachment-data";
+import UpdateUploadData from "../value/update-upload-data";
 
 export default interface Store {
     state: AppState
@@ -24,5 +25,7 @@ export default interface Store {
     todoDetails: TodoPropsBaseData;
     items: StoreItemData;
     showAddedUpdated: boolean;
+    showProgressBar: boolean;
+    uploadProgress: UpdateUploadData;
 }
 

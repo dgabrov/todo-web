@@ -92,7 +92,9 @@ const createEmptyStore = () : Store => {
         editAttachment: createEmptyAttachmentData(),
         todoDetails: createEmptyTodoPropsBaseData(),
         items: createStoreItemData(),
-        showAddedUpdated: false
+        showAddedUpdated: false,
+        showProgressBar: false,
+        uploadProgress: {total: 0, loaded: 0}
     }
 }
 

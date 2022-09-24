@@ -87,6 +87,8 @@ import {
     createReducerToggleShowAddedUpdated
 } from "./actions/action-toggle-show-added-updated";
 import {ACTION_AFTER_MULTIPLE_ADD, createReducerAfterMultipleAdd} from "./actions/action-after-multiple-add";
+import {ACTION_SHOW_HIDE_PROGRESS_BAR, createReducerShowHideProgressBar} from "./actions/action-show-hide-progress-bar";
+import {ACTION_UPDATE_PROGRESS, createReducerUpdateProgress} from "./actions/action-update-progress";
 
 
 const reducerMap: { [key: string]: any } = {};
@@ -141,6 +143,8 @@ reducerMap[ACTION_EXPAND_ALL] = createReducerExpandAll;
 reducerMap[ACTION_TRIM_ITEMS] = createReducerTrimItems;
 reducerMap[ACTION_TOGGLE_SHOW_ADDED_UPDATED] = createReducerToggleShowAddedUpdated;
 reducerMap[ACTION_AFTER_MULTIPLE_ADD] = createReducerAfterMultipleAdd;
+reducerMap[ACTION_SHOW_HIDE_PROGRESS_BAR] = createReducerShowHideProgressBar;
+reducerMap[ACTION_UPDATE_PROGRESS] = createReducerUpdateProgress;
 
 
 
