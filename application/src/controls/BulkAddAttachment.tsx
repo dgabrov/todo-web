@@ -8,6 +8,19 @@ import {createActionSetLocation} from "../reducer/actions/action-set-location";
 import AppState from "../data/value/app-state";
 
 
+function calculateProgress(loaded: number, total: number): string {
+    let res: string = "0";
+
+    if (total !== 0) {
+        const percent = loaded / total * 100;
+
+        // format it into the result
+        res = percent.toFixed(2);
+    }
+
+    return res;
+}
+
 const BulkAddAttachment = (props: BulkAddAttachmentProps) => {
     function submit(event: any) {
         props.submit();
@@ -16,6 +29,8 @@ const BulkAddAttachment = (props: BulkAddAttachmentProps) => {
     function cancel(event: any) {
         props.cancel();
     }
+
+    const progress = calculateProgress(props.loaded, props.total);
 
     return (
         <div className="container-fluid">
@@ -31,7 +46,7 @@ const BulkAddAttachment = (props: BulkAddAttachmentProps) => {
                 </div>
                 <div className="row">
                         <span>Progress: </span>
-                        <span><strong>100%</strong></span>
+                        <span><strong>{progress}%</strong></span>
                 </div>
                 <div className="row">
                         <button type="submit" className="btn btn-primary border" onClick={submit}>Submit</button>
@@ -48,7 +63,9 @@ const storeToProps = (store: Store): BulkAddAttachmentPropsData => {
 
     return {
         itemId: bulkAddAttachmentStore.itemId,
-        name: bulkAddAttachmentStore.name
+        name: bulkAddAttachmentStore.name,
+        loaded: bulkAddAttachmentStore.loaded,
+        total: bulkAddAttachmentStore.total
     }
 }
 
