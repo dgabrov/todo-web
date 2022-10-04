@@ -1,7 +1,7 @@
 import {Action} from "redux";
 import Store from "../../data/store/store";
 import AppState from "../../data/value/app-state";
-import {ItemShortData} from "../../data/value/item-short-data";
+import {BulkAttachData} from "../../data/value/bulk-attach-data";
 
 export const ACTION_BULK_ADD_ATTACHMENTS = 'ACTION_BULK_ADD_ATTACHMENTS';
 
@@ -22,9 +22,11 @@ export const createActionBulkAddAttachment = (itemId: string, name: string): Act
 
 export const createReducerBulkAddAttachment = (store: Store | undefined, action: ActionBulkAddAttachment): Store => {
     const state = AppState.bulkAdd;
-    const bulkAddAttachment : ItemShortData = {
+    const bulkAddAttachment : BulkAttachData = {
         itemId: action.itemId,
-        name: action.name
+        name: action.name,
+        loaded: 0, // for starters they are all at zero
+        total: 0
     }
 
     let newStore = {...store!!, ...{state}, ...{bulkAddAttachment}};

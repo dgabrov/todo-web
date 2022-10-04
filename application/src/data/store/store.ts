@@ -9,7 +9,7 @@ import {StoreItemData} from "../item/store-item-data";
 import {EditItemData} from "../value/edit-item-data";
 import {EditAttachmentData} from "../value/edit-attachment-data";
 import UpdateUploadData from "../value/update-upload-data";
-import {ItemShortData} from "../value/item-short-data";
+import {BulkAttachData} from "../value/bulk-attach-data";
 
 export default interface Store {
     state: AppState
@@ -28,6 +28,6 @@ export default interface Store {
     showAddedUpdated: boolean;
     showProgressBar: boolean;
     uploadProgress: UpdateUploadData;
-    bulkAddAttachment: ItemShortData;
+    bulkAddAttachment: BulkAttachData;
 }
 

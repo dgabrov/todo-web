@@ -95,9 +95,8 @@ const createEmptyStore = () : Store => {
         showAddedUpdated: false,
         showProgressBar: false,
         uploadProgress: {total: 0, loaded: 0},
-        bulkAddAttachment: {itemId: "", name: ""}
+        bulkAddAttachment: {itemId: "", name: "", total: 0, loaded: 0}
     }
 }
 
 export default createEmptyStore;
-
