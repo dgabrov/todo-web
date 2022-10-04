@@ -94,7 +94,8 @@ const createEmptyStore = () : Store => {
         items: createStoreItemData(),
         showAddedUpdated: false,
         showProgressBar: false,
-        uploadProgress: {total: 0, loaded: 0}
+        uploadProgress: {total: 0, loaded: 0},
+        bulkAddAttachment: {itemId: "", name: ""}
     }
 }
 

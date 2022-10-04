@@ -71,7 +71,9 @@ export const updateAttachment = async (adding: boolean, attachment: AttachmentDa
     data.append('data', JSON.stringify({adding, attachment}));
     const url = config.apiUrl + '/updateAttachment';
 
-    const response = await axios.post(url, data, {onUploadProgress: (event) => {
+    const response = await axios.post(url, data,
+        {
+            onUploadProgress: (event) => {
             if (event && event.total && event.loaded && typeof event.total === 'number' && typeof event.loaded === 'number' && callback) {
                 let total = event.total as number;
                 let loaded = event.loaded as number;
