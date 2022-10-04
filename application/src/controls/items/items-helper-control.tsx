@@ -101,6 +101,16 @@ export const createItemRow = (item: CompleteItemData, index: number, props: Item
         props.unselectAttachments(item.itemId);
     }
 
+    const bulkAdd = (itemId: string, name: string) => {
+        return (event: any) : void => {
+            event.preventDefault();
+            event.stopPropagation();
+
+            // TODO put the props some stuff there
+            props.bulkAdd(itemId, name);
+        }
+    }
+
 
 
     let login: string = 'not found';
@@ -173,6 +183,7 @@ export const createItemRow = (item: CompleteItemData, index: number, props: Item
                     <a href="/" onClick={upAttachment} className="ml-1">up</a>
                     <a href="/" onClick={downAttachment} className="ml-1">down</a>
                     <a href="/" onClick={unselectAttachments} className="ml-1">unselect</a>
+                    <a href="/" onClick={bulkAdd(item.itemId, item.name)} className="ml-1">bulk</a>
                 </div>
             </div>
 

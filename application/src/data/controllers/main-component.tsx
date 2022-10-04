@@ -13,6 +13,7 @@ import CdAttachment from "../../controls/items/CdAttachment";
 import EditItem from "../../controls/items/EditItem";
 import EditAttachment from "../../controls/items/EditAttachment";
 import QuoteWrap from "../../controls/QuoteWrap";
+import BulkAddAttachment from "../../controls/BulkAddAttachment";
 
 const componentMap: {[key: string] : any} = {}
 
@@ -29,6 +30,7 @@ componentMap[AppState.cdAttachment] = <CdAttachment />;
 componentMap[AppState.editItem] = <EditItem />;
 componentMap[AppState.editAttachment] = <EditAttachment />;
 componentMap[AppState.quoteWrap] = <QuoteWrap />;
+componentMap[AppState.bulkAdd] = <BulkAddAttachment/>;
 
 
 export const mainComponent = (state: AppState) : any => {

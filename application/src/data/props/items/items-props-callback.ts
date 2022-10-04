@@ -25,4 +25,5 @@ export interface ItemsPropsCallback {
 
     positionSeqNoAttachment(attId: string, otherAttId: string) : void;
 
+    bulkAdd(itemId: string, name: string): void;
 }

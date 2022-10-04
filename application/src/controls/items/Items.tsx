@@ -24,6 +24,7 @@ import {createEffectFlaggedItems} from "../../reducer/effects/effect-flagged-ite
 import {createEffectSwitchSeqno} from "../../reducer/effects/effect-switch-seqno";
 import {createActionExpandAll} from "../../reducer/actions/action-expand-all";
 import {createActionTrimItems} from "../../reducer/actions/action-trim-items";
+import {createActionBulkAddAttachment} from "../../reducer/actions/action-bulk-add-attachment";
 
 const Items = (props: ItemsProps) => {
 
@@ -191,6 +192,9 @@ const dispatch = (dispatch: any): ItemsPropsCallback => {
         },
         positionSeqNoAttachment(attId: string, otherAttId: string) {
             dispatch(createEffectSwitchSeqno(attId, otherAttId));
+        },
+        bulkAdd(itemId: string, name: string) {
+            dispatch(createActionBulkAddAttachment(itemId, name));
         }
     }
 }

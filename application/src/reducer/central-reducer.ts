@@ -89,6 +89,7 @@ import {
 import {ACTION_AFTER_MULTIPLE_ADD, createReducerAfterMultipleAdd} from "./actions/action-after-multiple-add";
 import {ACTION_SHOW_HIDE_PROGRESS_BAR, createReducerShowHideProgressBar} from "./actions/action-show-hide-progress-bar";
 import {ACTION_UPDATE_PROGRESS, createReducerUpdateProgress} from "./actions/action-update-progress";
+import {ACTION_BULK_ADD_ATTACHMENTS, createReducerBulkAddAttachment} from "./actions/action-bulk-add-attachment";
 
 
 const reducerMap: { [key: string]: any } = {};
@@ -145,6 +146,7 @@ reducerMap[ACTION_TOGGLE_SHOW_ADDED_UPDATED] = createReducerToggleShowAddedUpdat
 reducerMap[ACTION_AFTER_MULTIPLE_ADD] = createReducerAfterMultipleAdd;
 reducerMap[ACTION_SHOW_HIDE_PROGRESS_BAR] = createReducerShowHideProgressBar;
 reducerMap[ACTION_UPDATE_PROGRESS] = createReducerUpdateProgress;
+reducerMap[ACTION_BULK_ADD_ATTACHMENTS] = createReducerBulkAddAttachment;
 
 
 

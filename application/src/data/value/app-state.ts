@@ -11,7 +11,8 @@ enum AppState {
     items = 'items', // those are the items - storage information
     cdItem = 'cdItem',
     cdAttachment = 'cdAttachment',
-    quoteWrap = 'quoteWrap'
+    quoteWrap = 'quoteWrap',
+    bulkAdd = 'bulkAdd'
 }
 
 export default AppState;
