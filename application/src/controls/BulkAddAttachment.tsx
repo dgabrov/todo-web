@@ -6,6 +6,7 @@ import {BulkAddAttachmentPropsCallback} from "../data/props/bulkaddattachment/bu
 import {connect} from "react-redux";
 import {createActionSetLocation} from "../reducer/actions/action-set-location";
 import AppState from "../data/value/app-state";
+import {createEffectBulkAddAttachment} from "../reducer/effects/effect-bulk-add-attachment";
 
 
 function calculateProgress(loaded: number, total: number): string {
@@ -22,8 +23,10 @@ function calculateProgress(loaded: number, total: number): string {
 }
 
 const BulkAddAttachment = (props: BulkAddAttachmentProps) => {
+    let fileField: any;
+
     function submit(event: any) {
-        props.submit();
+        props.submit(props.itemId, props.name, fileField.files);
     }
 
     function cancel(event: any) {
@@ -42,7 +45,7 @@ const BulkAddAttachment = (props: BulkAddAttachmentProps) => {
                     <div>Item: <strong>{props.name}</strong></div>
                 </div>
                 <div className="row">
-                    <div><input type="file" multiple={true}/></div>
+                    <div><input type="file" multiple={true} ref={(field) => {fileField = field}}/></div>
                 </div>
                 <div className="row">
                         <span>Progress: </span>
@@ -74,8 +77,8 @@ const dispatch = (dispatch: any): BulkAddAttachmentPropsCallback => {
         cancel: () => {
             dispatch(createActionSetLocation(AppState.items));
         },
-        submit: () => {
-            console.log('submit goes here originales')
+        submit: (itemId: string, name: string, files: any[]) => {
+            dispatch(createEffectBulkAddAttachment(itemId, name, files));
         }
     }
 }

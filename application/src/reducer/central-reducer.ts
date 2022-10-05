@@ -90,6 +90,11 @@ import {ACTION_AFTER_MULTIPLE_ADD, createReducerAfterMultipleAdd} from "./action
 import {ACTION_SHOW_HIDE_PROGRESS_BAR, createReducerShowHideProgressBar} from "./actions/action-show-hide-progress-bar";
 import {ACTION_UPDATE_PROGRESS, createReducerUpdateProgress} from "./actions/action-update-progress";
 import {ACTION_BULK_ADD_ATTACHMENTS, createReducerBulkAddAttachment} from "./actions/action-bulk-add-attachment";
+import {ACTION_UPDATE_BULK_PROGRESS, createReducerUpdateBulkProgress} from "./actions/action-update-bulk-progress";
+import {
+    ACTION_AFTER_BULK_ADD_ATTACHMENT,
+    createReducerAfterBulkAddAttachment
+} from "./actions/action-after-bulk-add-attachment";
 
 
 const reducerMap: { [key: string]: any } = {};
@@ -147,6 +152,8 @@ reducerMap[ACTION_AFTER_MULTIPLE_ADD] = createReducerAfterMultipleAdd;
 reducerMap[ACTION_SHOW_HIDE_PROGRESS_BAR] = createReducerShowHideProgressBar;
 reducerMap[ACTION_UPDATE_PROGRESS] = createReducerUpdateProgress;
 reducerMap[ACTION_BULK_ADD_ATTACHMENTS] = createReducerBulkAddAttachment;
+reducerMap[ACTION_UPDATE_BULK_PROGRESS] = createReducerUpdateBulkProgress;
+reducerMap[ACTION_AFTER_BULK_ADD_ATTACHMENT] = createReducerAfterBulkAddAttachment;
 
 
 
