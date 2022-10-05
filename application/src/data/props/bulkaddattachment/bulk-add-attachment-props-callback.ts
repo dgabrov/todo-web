@@ -1,5 +1,5 @@
 export interface BulkAddAttachmentPropsCallback {
-    submit(): void;
+    submit(itemId: string, name: string, files: any[]): void;
 
     cancel(): void;
 }
