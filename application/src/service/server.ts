@@ -201,3 +201,50 @@ export const updateDue = async (todoItemId: string, due: Date|null): Promise<boo
     return await proceedFetch('/updateDue', body, true, true);
 }
 
+export const addBulkAttachment = async (itemId: string, name: string, files: any[], callback: (upload: UpdateUploadData) => void) : Promise<AttachmentData[]> => {
+    const config: ConfigData = getConfig();
+
+    if(! (files && files.length && files.length > 0)){
+        throw new Error("Please provide at least one file to upload in bulk");
+    }
+
+    const formData = new FormData();
+
+    // attach the files to the formdata
+    const nr = files.length;
+    for (let i = 0; i < nr; i++) {
+        formData.append('file', files[i]);
+    }
+
+    // one payload with the item information
+    formData.append('data', JSON.stringify({itemId, name}));
+
+    const url = config.apiUrl + '/addBulkAttachment';
+
+    let authHeader = 'bearer ' + getToken();
+
+    const response = await axios.post(url, formData,
+        {
+            onUploadProgress: (event) => {
+                if (event && event.total && event.loaded && typeof event.total === 'number' && typeof event.loaded === 'number' && callback) {
+                    let total = event.total as number;
+                    let loaded = event.loaded as number;
+
+                    // prepare the upload data
+                    let data : UpdateUploadData = {
+                        total, loaded
+                    }
+
+                    // invoke the callback for the data
+                    callback(data);
+                }
+            }, headers : {authorization: authHeader}});
+
+    const dt = await response.data;
+
+    if (response.status >= 400) {
+        throw dt;
+    }
+
+    return dt;
+}
