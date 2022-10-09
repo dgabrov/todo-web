@@ -4,6 +4,7 @@ import {AttachmentData} from "../../data/item/attachment-data";
 import UpdateUploadData from "../../data/value/update-upload-data";
 import {createActionUpdateBulkProgress} from "../actions/action-update-bulk-progress";
 import {createActionAfterBulkAddAttachment} from "../actions/action-after-bulk-add-attachment";
+import {addBulkAttachment} from "../../service/server";
 
 const processEffectBulkAddAttachment = async (dispatch: any, getStore: any, itemId: string, name: string, files: any[]) : Promise<boolean> => {
     try {
@@ -37,22 +38,6 @@ export const createEffectBulkAddAttachment = (itemId: string, name: string, file
     }
 }
 
-const proceedDelay = async (): Promise<void> => {
-    return new Promise((resolve, reject) => {
-        setTimeout(resolve, 1000);
-    })
-}
-
 const bulkAddAttachment = async (itemId: string, name: string, files: any[], callback: (upload: UpdateUploadData) => void) : Promise<AttachmentData[]> => {
-    callback({total: 10000, loaded: 10000});
-
-    // wait for a second here and there
-    await proceedDelay();
-    return [
-        {attachmentId: '1', itemId, added: new Date(), contentType: 'application/text', description:'description1', fileName:'alfa1.dat', seqNo:10, updated: new Date()},
-        {attachmentId: '2', itemId, added: new Date(), contentType: 'application/text', description:'description2', fileName:'alfa2.dat', seqNo:10, updated: new Date()},
-        {attachmentId: '3', itemId, added: new Date(), contentType: 'application/text', description:'description3', fileName:'alfa3.dat', seqNo:10, updated: new Date()},
-        {attachmentId: '4', itemId, added: new Date(), contentType: 'application/text', description:'description4', fileName:'alfa4.dat', seqNo:10, updated: new Date()},
-        {attachmentId: '5', itemId, added: new Date(), contentType: 'application/text', description:'description5', fileName:'alfa5.dat', seqNo:10, updated: new Date()},
-    ];
+    return await addBulkAttachment(itemId, name, files, callback);
 }
