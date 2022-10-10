@@ -83,7 +83,8 @@ const EditAttachment = (props : EditAttachmentProps) : any => {
                     </div>
                 </div>
             </div>
-        </div>    );
+        </div>
+    );
 }
 
 const storeToProps = (store: Store) : EditAttachmentPropsData => {
