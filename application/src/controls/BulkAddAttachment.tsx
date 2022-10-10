@@ -24,9 +24,11 @@ function calculateProgress(loaded: number, total: number): string {
 
 const BulkAddAttachment = (props: BulkAddAttachmentProps) => {
     let fileField: any;
+    let nameField: any;
 
     function submit(event: any) {
-        props.submit(props.itemId, props.name, fileField.files);
+        // the submit is done with the description, not with the item name
+        props.submit(props.itemId, nameField.value, fileField.files);
     }
 
     function cancel(event: any) {
@@ -39,21 +41,27 @@ const BulkAddAttachment = (props: BulkAddAttachmentProps) => {
         <div className="container-fluid">
             <div className="col-lg-6 col-md-6 col-12">
                 <div className="row">
-                    <h1>Bulk Add Attachments</h1>
+                    <div className="col-12 form-group">
+                        <h1>Bulk Add Attachments</h1>
                     </div>
-                <div className="row">
-                    <div>Item: <strong>{props.name}</strong></div>
-                </div>
-                <div className="row">
-                    <div><input type="file" multiple={true} ref={(field) => {fileField = field}}/></div>
-                </div>
-                <div className="row">
-                        <span>Progress: </span>
-                        <span><strong>{progress}%</strong></span>
-                </div>
-                <div className="row">
+                    <div className="col-12 form-group">
+                        Item: <strong>{props.name}</strong>
+                    </div>
+                    <div className="col-12 form-group">
+                        <label htmlFor="iddescripotion">Description</label>
+                        <input className="form-control" type="text" id="iddescription" ref={(field) => {nameField = field}}/>
+                    </div>
+                    <div className="col-12 form-group">
+                        <label htmlFor="idfiles">Files</label>
+                        <input className="form-control" type="file" id="idfiles" multiple={true} ref={(field) => {fileField = field}}/>
+                    </div>
+                    <div className="col-12 form-group">
+                        Progress: <strong>{progress}%</strong>
+                    </div>
+                    <div className="col-12 form-group">
                         <button type="submit" className="btn btn-primary border" onClick={submit}>Submit</button>
                         <button type="submit" className="btn btn-primary border" onClick={cancel}>Cancel</button>
+                    </div>
                 </div>
             </div>
         </div>
