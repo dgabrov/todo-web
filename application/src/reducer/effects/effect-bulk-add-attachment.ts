@@ -9,7 +9,7 @@ import {addBulkAttachment} from "../../service/server";
 const processEffectBulkAddAttachment = async (dispatch: any, getStore: any, itemId: string, name: string, files: any[]) : Promise<boolean> => {
     try {
         // files must be filled out with at least one file
-        if (!(files && files.length && files.length > 1)) {
+        if (!(files && files.length && files.length > 0)) {
             dispatch(createActionSendMessage(true, "At least one file is needed for bulk add files"))
         } else {
             // proceed with the request
