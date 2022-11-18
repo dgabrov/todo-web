@@ -9,11 +9,13 @@ import thunk from "redux-thunk";
 import Store from "./data/store/store";
 import createEmptyStore from "./data/store/create-empty-store";
 import centralReducer from "./reducer/central-reducer";
+import {VERSION_NUMBER} from "./util/constants";
 
 const initialState: PreloadedState<Store> = createEmptyStore();
 
 const composeEnhancers = (typeof window !== 'undefined' && (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) || compose;
 const store = createStore(centralReducer, initialState, composeEnhancers(applyMiddleware(thunk)));
+console.log('Version: ' + VERSION_NUMBER);
 
 ReactDOM.render(
     <Provider store={store}>
