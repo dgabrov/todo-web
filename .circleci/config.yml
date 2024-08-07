@@ -5,7 +5,9 @@ workflows:
       - build:
           filters:
             branches:
-              only: main
+              only:
+                - master
+                - main
 
 executors:
   my-executor:
