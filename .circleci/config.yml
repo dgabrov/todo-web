@@ -5,12 +5,16 @@ workflows:
       - build:
           filters:
             branches:
-              only: master
+              only: main
+
+executors:
+  my-executor:
+    machine:
+      image: ubuntu-2204:edge
 
 jobs:
   build:
-    machine:
-      image: ubuntu-2204:edge
+    executor: my-executor
     steps:
       - checkout
       - run: echo ${CIRCLE_BUILD_NUM}
