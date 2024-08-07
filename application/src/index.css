@@ -12,8 +12,17 @@ code {
     monospace;
 }
 
+table.table > thead > tr {
+  background-color: #f0f0f0;
+}
+
 td.highlighted:hover {
   background-color: yellow;
+  cursor: pointer;
+}
+
+tr.canHover:hover {
+  background-color: #f8f8f8;
   cursor: pointer;
 }
 
