@@ -259,7 +259,7 @@ const Todo = (props: TodoProps) => {
             }
 
             return (
-                <tr key={item.todoItemId}>
+                <tr className="canHover" key={item.todoItemId}>
                     <td className="text-nowrap">{index}</td>
                     <td className="text-nowrap">
                         <input type="checkbox" checked={selectedObject.hasOwnProperty(item.todoItemId)}
@@ -394,7 +394,7 @@ const Todo = (props: TodoProps) => {
                     proj: {getProjectList(props)}
                 </div>
                 <div className="col-12">
-                    <table className="table table-sm table-striped table-bordered mt-3">
+                    <table className="table table-sm table-bordered mt-3">
                         <thead>
                         <tr>
                             <td className="text-nowrap">Nr</td>
