@@ -18,3 +18,6 @@ export const NONE = 'none';
 export const TOKEN_COOKIE_NAME = 'token12';
 
 export const VERSION_NUMBER = '100.0 - after fixing bulk upload'
+
+export const TOTP_DEFAULT_CHARACTERS = '6';
+export const TOTP_DEFAULT_DURATION = '30';

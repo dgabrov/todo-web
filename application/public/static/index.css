@@ -7,3 +7,8 @@ td.due-value div {
     margin: 0;
     padding: 1px;
 }
+
+.error-red {
+    color: red;
+    font-weight: bold;
+}

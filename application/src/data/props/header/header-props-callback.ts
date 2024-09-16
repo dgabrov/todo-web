@@ -10,4 +10,6 @@ export default interface HeaderPropsCallback {
     addLogin(): void;
 
     quoteWrap(): void;
+
+    totp(): void;
 }
