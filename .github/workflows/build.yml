@@ -1,0 +1,32 @@
+name: todo web
+run-name: todo web
+on:
+  push:
+    branches:
+      - main
+jobs:
+  docker_login:
+    runs-on: ubuntu-latest
+    name: build todo web
+    steps:
+      - name: code checkout
+        uses: actions/checkout@v4.2.2
+
+      - name: build
+        run: |
+          echo ${GITHUB_RUN_NUMBER}
+          docker run --workdir /appbuild -v $(pwd):/appbuild node:22-alpine3.19 /bin/sh build.sh
+          docker build . -t 169533462518.dkr.ecr.us-east-2.amazonaws.com/todo-web:1.0.${GITHUB_RUN_NUMBER}
+          docker image ls
+
+      - name: docker login
+        run: |
+          val=$(AWS_ACCESS_KEY_ID=${{secrets.DOCKER_AWS_KEY}} AWS_SECRET_ACCESS_KEY=${{secrets.DOCKER_AWS_SECRET}} aws ecr get-login-password --region us-east-2)
+          echo "val=$val" >> $GITHUB_ENV
+          echo $val | docker login --username AWS --password-stdin 169533462518.dkr.ecr.us-east-2.amazonaws.com
+          docker image ls
+
+      - name: docker push
+        run: |
+          docker image push 169533462518.dkr.ecr.us-east-2.amazonaws.com/todo-web:1.0.${GITHUB_RUN_NUMBER}
+
