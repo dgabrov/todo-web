@@ -1,5 +1,4 @@
 enum AppState {
-    starter = 'starter',
     addLogin = 'addLogin',
     login = 'login',
     bulk = 'bulk',

@@ -79,7 +79,7 @@ const createEmptyAttachmentData = () : EditAttachmentData => {
 
 const createEmptyStore = () : Store => {
     return {
-        state: AppState.starter,
+        state: AppState.login,
         initialLogin: "",
         token: "",
         persons: [],

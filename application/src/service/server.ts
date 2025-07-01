@@ -16,7 +16,7 @@ import axios from "axios";
 import UpdateUploadData from "../data/value/update-upload-data";
 
 const proceedFetch = async (url: string, body: string|undefined, isPost: boolean, addToken: boolean): Promise<any> => {
-    const config: ConfigData = getConfig();
+    const config: ConfigData = await getConfig();
 
     const response = await fetch(config.apiUrl + url, buildConfig(isPost, addToken, body));
     const data = await response.json();
@@ -32,6 +32,7 @@ const buildConfig = (post: boolean, addToken: boolean, body: string|undefined) :
     const headers: HeadersInit = new Headers();
     headers.append('content-type', 'application/json');
     if (addToken) {
+        console.log(`added token ${getToken()}`)
         headers.append('authorization', `bearer ${getToken()}`);
     }
 
@@ -62,7 +63,7 @@ const buildConfig = (post: boolean, addToken: boolean, body: string|undefined) :
 
  */
 export const updateAttachment = async (adding: boolean, attachment: AttachmentData, file: any|null, callback: (upload: UpdateUploadData)=> void|undefined): Promise<AttachmentData> => {
-    const config: ConfigData = getConfig();
+    const config: ConfigData = await getConfig();
 
     const data = new FormData();
     if (file !== null) {
@@ -73,6 +74,9 @@ export const updateAttachment = async (adding: boolean, attachment: AttachmentDa
 
     const response = await axios.post(url, data,
         {
+            headers: {
+                Authorization: `bearer ${getToken()}`
+            },
             onUploadProgress: (event) => {
             if (event && event.total && event.loaded && typeof event.total === 'number' && typeof event.loaded === 'number' && callback) {
                 let total = event.total as number;
@@ -202,7 +206,7 @@ export const updateDue = async (todoItemId: string, due: Date|null): Promise<boo
 }
 
 export const addBulkAttachment = async (itemId: string, name: string, files: any[], callback: (upload: UpdateUploadData) => void) : Promise<AttachmentData[]> => {
-    const config: ConfigData = getConfig();
+    const config: ConfigData = await getConfig();
 
     if(! (files && files.length && files.length > 0)){
         throw new Error("Please provide at least one file to upload in bulk");
