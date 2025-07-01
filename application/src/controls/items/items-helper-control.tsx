@@ -5,7 +5,7 @@ import {ItemsProps} from "../../data/props/items/items-props";
 import {v4} from "uuid";
 import {formatDate} from "../../util/util-ui-functions";
 import {AttachmentData} from "../../data/item/attachment-data";
-import {getConfig} from "../../data/config/config-accessor";
+import {getLoadedUrl} from "../../data/config/config-accessor";
 
 export const createEmptyResponseItems = () => {
     return (
@@ -132,8 +132,7 @@ export const createItemRow = (item: CompleteItemData, index: number, props: Item
     if (item.attachments.length > 0) {
         attachmentString = "";
 
-        const config = getConfig();
-        const apiUrl = config.apiUrl;
+        const apiUrl = getLoadedUrl();
 
         const attachFields: any = [];
         item.attachments.forEach((att) => {
