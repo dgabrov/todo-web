@@ -52,7 +52,7 @@ const EditAttachment = (props : EditAttachmentProps) : any => {
     }
 
     return (
-        <div className="container-fluid">
+        <div className="container-fluid" key={'12'}>
             <div className="col-lg-6 col-md-6 col-12">
                 <div className="row">
                     <div className="col-12 form-group">
