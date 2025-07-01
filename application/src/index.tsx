@@ -7,14 +7,13 @@ import createEmptyStore from "./data/store/create-empty-store";
 import centralReducer from "./reducer/central-reducer";
 import {VERSION_NUMBER} from "./util/constants";
 import {configureStore} from "@reduxjs/toolkit";
-import {thunk} from "redux-thunk";
 import {createRoot} from "react-dom/client";
 
 const initialState = createEmptyStore();
 
 const store = configureStore({
     reducer: centralReducer,
-    middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(thunk),
+    middleware: (getDefaultMiddleware) => getDefaultMiddleware(),
     preloadedState: initialState
 })
 console.log('Version: ' + VERSION_NUMBER);

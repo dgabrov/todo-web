@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import {TOTP} from 'totp-generator';
+import * as OTPAuth from "otpauth";
 import {TOTP_DEFAULT_CHARACTERS, TOTP_DEFAULT_DURATION} from "../util/constants";
 
 const changeSupport = (processor: (vl: any) => void) => {
@@ -31,13 +31,15 @@ const Totp = () => {
 
             const nrDuration = parseInt(strDuration)
 
-            const options = {
+            let totp = new OTPAuth.TOTP({
                 digits: nrChars,
-                period: nrDuration
-            }
+                period: nrDuration,
+                secret: hash,
+            });
 
-            const strVal = TOTP.generate(hash, options)
-            setValue(strVal.otp)
+            const token = totp.generate()
+
+            setValue(token)
         } catch (err){
             setErr('' + err)
         }
