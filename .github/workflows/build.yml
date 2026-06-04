@@ -1,14 +1,17 @@
 name: build todo web
 run-name: build todo web
 on:
-  push:
+  pull_request:
     branches:
       - master
+    types:
+      - closed
 
 jobs:
   docker_login:
     runs-on: ubuntu-latest
     name: build accounting web project
+    if: github.event.pull_request.merged == true
     steps:
       - name: code checkout
         uses: actions/checkout@v6
@@ -31,4 +34,3 @@ jobs:
         run: |
           docker image push 169533462518.dkr.ecr.us-east-2.amazonaws.com/todo-web:1.0.11${GITHUB_RUN_NUMBER}
           echo docker pushed successfully
-
