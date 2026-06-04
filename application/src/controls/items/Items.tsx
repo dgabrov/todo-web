@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {ItemsProps} from "../../data/props/items/items-props";
 import Store from "../../data/store/store";
 import {ItemsPropsData} from "../../data/props/items/items-props-data";
@@ -32,6 +32,7 @@ const Items = (props: ItemsProps) => {
     const persons = props.persons;
     const items = storeItemData.items;
     const selected = storeItemData.selected;
+    const [showDates, setShowDates] = useState(false);
 
     let searchField: any;
 
@@ -68,13 +69,19 @@ const Items = (props: ItemsProps) => {
     const rows: any = [];
 
     if (items.length === 0) {
-        rows.push(createEmptyResponseItems());
+        rows.push(createEmptyResponseItems(showDates));
     }
     else {
         items.forEach((item, index)=> {
-            let itemRow = createItemRow(item, index, props, persons);
+            let itemRow = createItemRow(item, index, props, persons, showDates);
             rows.push(itemRow)
         });
+    }
+
+    const showDatesHeader = []
+    if (showDates) {
+        showDatesHeader.push(<td className="text-nowrap text-center">Added</td>);
+        showDatesHeader.push(<td className="text-nowrap text-center">Updated</td>);
     }
 
     return (
@@ -98,6 +105,7 @@ const Items = (props: ItemsProps) => {
                     <button type="submit" className="btn border btn-sm ml-1" onClick={props.trim}>Trim</button>
                     <button type="submit" className="btn border btn-sm ml-1" onClick={props.clear}>Clear</button>
                     <button type="submit" className="btn border btn-sm ml-3" onClick={props.getFlaggedItems}>Flag</button>
+                    <button type="submit" className="btn border btn-sm ml-3" onClick={() => setShowDates(!showDates)}>Dates</button>
                 </div>
                 <div className="col-12">
                     <table className="table table-sm table-bordered mt-3">
@@ -110,6 +118,7 @@ const Items = (props: ItemsProps) => {
                             <td className="w-100">Name</td>
                             <td className="text-nowrap">Category</td>
                             <td className="text-nowrap">Flag</td>
+                            {showDatesHeader}
                         </tr>
                         </thead>
                         <tbody>

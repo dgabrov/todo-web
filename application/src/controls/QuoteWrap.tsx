@@ -54,13 +54,13 @@ const QuoteWrap = (props: QuoteProps) => {
                         <label htmlFor="idQuote">Quote</label>
                         <input type="text" className="form-control" id="idQuote" value={quote} onChange={(ev) => {setQuote(ev.target.value)}}/>
                     </div>
-                    <div className="col-3 form-group d-flex flex-row align flex-nowrap">
+                    <div className="col-3 form-group d-flex flex-row align-items-center flex-nowrap">
                         <input type="checkbox" id="idAddQuote" checked={addQuote} onChange={(ev) => {setAddQuote(ev.target.checked)}}/>
-                        <label htmlFor="idAddQuote" className="ml-2" >Add Quote</label>
+                        <label htmlFor="idAddQuote" className="ml-2 mb-0">Add Quote</label>
                     </div>
-                    <div className="col-3 form-group d-flex flex-row align flex-nowrap">
+                    <div className="col-3 form-group d-flex flex-row align-items-center flex-nowrap">
                         <input type="checkbox" id="idAddBlankLine" checked={addBlankLine} onChange={(ev) => {setAddBlankLine(ev.target.checked)}}/>
-                        <label htmlFor="idAddBlankLine" className="ml-2">Add Blank Line</label>
+                        <label htmlFor="idAddBlankLine" className="ml-2 mb-0">Add Blank Line</label>
                     </div>
                 </div>
                 <div className="row">

@@ -7,16 +7,20 @@ import {formatDate} from "../../util/util-ui-functions";
 import {AttachmentData} from "../../data/item/attachment-data";
 import {getLoadedUrl} from "../../data/config/config-accessor";
 
-export const createEmptyResponseItems = () => {
+export const createEmptyResponseItems = (showDates: boolean) => {
+    let columns = 3;
+    if (showDates){
+        columns = 5;
+    }
     return (
         <tr key={'uniqueval'}>
             <td className="text-nowrap" colSpan={4}>&nbsp;</td>
-            <td className="text-nowrap" colSpan={3}>No items...</td>
+            <td className="text-nowrap" colSpan={columns}>No items...</td>
         </tr>
     );
 }
 
-export const createItemRow = (item: CompleteItemData, index: number, props: ItemsProps, persons: {[key: string] : PersonData}) => {
+export const createItemRow = (item: CompleteItemData, index: number, props: ItemsProps, persons: {[key: string] : PersonData}, showDates: boolean) => {
     const storeItemData = props.storeItemData;
 
     const selected = storeItemData.selected;
@@ -189,6 +193,13 @@ export const createItemRow = (item: CompleteItemData, index: number, props: Item
         );
     }
 
+    const datesColumns = []
+
+    if (showDates){
+        datesColumns.push(<td className="text-nowrap text-center">{formatDate(item.added)}</td>);
+        datesColumns.push(<td className="text-nowrap text-center">{formatDate(item.updated)}</td>);
+    }
+
     return(
         <tr key={item.itemId}>
             <td className="text-nowrap text-center">{index + 1}</td>
@@ -201,6 +212,7 @@ export const createItemRow = (item: CompleteItemData, index: number, props: Item
             </td>
             <td className="text-nowrap">{item.category}</td>
             <td className={flaggedClass}>{item.flagged ? 'Yes' : 'No'}</td>
+            {datesColumns}
         </tr>
     );
 }
