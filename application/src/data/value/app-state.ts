@@ -12,7 +12,8 @@ enum AppState {
     cdAttachment = 'cdAttachment',
     quoteWrap = 'quoteWrap',
     bulkAdd = 'bulkAdd',
-    totp = 'totp'
+    totp = 'totp',
+    pwd = 'pwd'
 }
 
 export default AppState;

@@ -14,6 +14,7 @@ import EditAttachment from "../../controls/items/EditAttachment";
 import QuoteWrap from "../../controls/QuoteWrap";
 import BulkAddAttachment from "../../controls/BulkAddAttachment";
 import Totp from "../../controls/Totp";
+import Pwd from "../../controls/Pwd";
 
 const componentMap: {[key: string] : any} = {}
 
@@ -31,6 +32,7 @@ componentMap[AppState.editAttachment] = <EditAttachment />;
 componentMap[AppState.quoteWrap] = <QuoteWrap />;
 componentMap[AppState.bulkAdd] = <BulkAddAttachment/>;
 componentMap[AppState.totp] = <Totp/>;
+componentMap[AppState.pwd] = <Pwd/>;
 
 
 export const mainComponent = (state: AppState) : any => {

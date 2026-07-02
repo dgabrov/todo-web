@@ -30,4 +30,3 @@ export default interface Store {
     uploadProgress: UpdateUploadData;
     bulkAddAttachment: BulkAttachData;
 }
-

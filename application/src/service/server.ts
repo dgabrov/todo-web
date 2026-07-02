@@ -14,11 +14,12 @@ import {AttachmentData} from "../data/item/attachment-data";
 import {MultipleTodoData} from "../data/value/multiple-todo-data";
 import axios from "axios";
 import UpdateUploadData from "../data/value/update-upload-data";
+import {PasswordBundle, PasswordData, PasswordInputData} from "../data/value/pwd-data";
 
-const proceedFetch = async (url: string, body: string|undefined, isPost: boolean, addToken: boolean): Promise<any> => {
+const proceedFetch = async (url: string, body: string|undefined, isPost: boolean, addToken: boolean, method?: 'get'|'post'|'put'): Promise<any> => {
     const config: ConfigData = await getConfig();
 
-    const response = await fetch(config.apiUrl + url, buildConfig(isPost, addToken, body));
+    const response = await fetch(config.apiUrl + url, buildConfig(isPost, addToken, body, method));
     const data = await response.json();
 
     if (response.status >= 400) {
@@ -28,7 +29,7 @@ const proceedFetch = async (url: string, body: string|undefined, isPost: boolean
     return data;
 }
 
-const buildConfig = (post: boolean, addToken: boolean, body: string|undefined) : RequestInit => {
+const buildConfig = (post: boolean, addToken: boolean, body: string|undefined, method?: 'get'|'post'|'put') : RequestInit => {
     const headers: HeadersInit = new Headers();
     headers.append('content-type', 'application/json');
     if (addToken) {
@@ -38,7 +39,7 @@ const buildConfig = (post: boolean, addToken: boolean, body: string|undefined) :
 
     const res: RequestInit = {
         headers,
-        method: post ? 'post' : 'get'
+        method: method ?? (post ? 'post' : 'get')
     }
 
     if (body !== undefined) {
@@ -251,4 +252,16 @@ export const addBulkAttachment = async (itemId: string, name: string, files: any
     }
 
     return dt;
+}
+
+export const getPasswordData = async (personId: string, password: string): Promise<PasswordData> => {
+    const inputData: PasswordInputData = {personId, password};
+
+    return await proceedFetch('/password', JSON.stringify(inputData), true, true);
+}
+
+export const setPasswordData = async (personId: string, password: string, payload: PasswordData): Promise<void> => {
+    const bundle: PasswordBundle = {personId, password, payload};
+
+    await proceedFetch('/password', JSON.stringify(bundle), true, true, 'put');
 }
