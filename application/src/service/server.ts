@@ -16,7 +16,7 @@ import axios from "axios";
 import UpdateUploadData from "../data/value/update-upload-data";
 import {PasswordBundle, PasswordData, PasswordInputData} from "../data/value/pwd-data";
 
-const proceedFetch = async (url: string, body: string|undefined, isPost: boolean, addToken: boolean): Promise<any> => {
+const proceedFetch = async (url: string, body: string|undefined, isPost: boolean, addToken: boolean, method?: 'get'|'post'|'put'): Promise<any> => {
     const config: ConfigData = await getConfig();
 
     const response = await fetch(config.apiUrl + url, buildConfig(isPost, addToken, body, method));
