@@ -11,7 +11,7 @@ on:
 jobs:
   docker_login:
     runs-on: ubuntu-latest
-    name: build accounting web project
+    name: build todo web project
     if: github.event.pull_request.merged == true
     steps:
       - name: code checkout
