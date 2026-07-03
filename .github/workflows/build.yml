@@ -1,22 +1,27 @@
-name: todo web
-run-name: todo web
+name: build todo web
+run-name: build todo web
 on:
-  push:
+  pull_request:
     branches:
+      - master
       - main
+    types:
+      - closed
+
 jobs:
   docker_login:
     runs-on: ubuntu-latest
-    name: build todo web
+    name: build todo web project
+    if: github.event.pull_request.merged == true
     steps:
       - name: code checkout
-        uses: actions/checkout@v4.2.2
+        uses: actions/checkout@v6
 
       - name: build
         run: |
-          echo ${GITHUB_RUN_NUMBER}
-          docker run --workdir /appbuild -v $(pwd):/appbuild node:22-alpine3.19 /bin/sh build.sh
-          docker build . -t 169533462518.dkr.ecr.us-east-2.amazonaws.com/todo-web:1.0.${GITHUB_RUN_NUMBER}
+          echo the build number is: ${GITHUB_RUN_NUMBER}
+          docker run --workdir /application -v $(pwd):/application node:24-alpine3.22 /bin/sh build.sh
+          docker build . -t 169533462518.dkr.ecr.us-east-2.amazonaws.com/todo-web:1.0.11${GITHUB_RUN_NUMBER}
           docker image ls
 
       - name: docker login
@@ -28,5 +33,5 @@ jobs:
 
       - name: docker push
         run: |
-          docker image push 169533462518.dkr.ecr.us-east-2.amazonaws.com/todo-web:1.0.${GITHUB_RUN_NUMBER}
-
+          docker image push 169533462518.dkr.ecr.us-east-2.amazonaws.com/todo-web:1.0.11${GITHUB_RUN_NUMBER}
+          echo docker pushed successfully

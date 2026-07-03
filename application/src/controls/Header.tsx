@@ -72,6 +72,13 @@ const Header = (props: HeaderProps) => {
         props.totp();
     }
 
+    const pwd = (event: React.MouseEvent<HTMLAnchorElement>) => {
+        event.preventDefault();
+        event.stopPropagation();
+
+        props.pwd();
+    }
+
     // depending whether it is logged in or not, display the adequate values
     let loggedInPersons = 'Not logged in';
     let component =
@@ -112,6 +119,10 @@ const Header = (props: HeaderProps) => {
             </li>
             <li className="nav-item">
                 <a className="nav-link" onClick={totp} href="/">Totp</a>
+            </li>
+
+            <li className="nav-item">
+                <a className="nav-link" onClick={pwd} href="/">Pass</a>
             </li>
         </ul>
     }
@@ -161,6 +172,8 @@ const dispatch = (dispatch: any) : HeaderPropsCallback => {
             dispatch(createActionSetLocation(AppState.quoteWrap));
         }, totp() {
             dispatch(createActionSetLocation(AppState.totp));
+        }, pwd() {
+            dispatch(createActionSetLocation(AppState.pwd));
         }
     }
 }

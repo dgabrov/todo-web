@@ -1,5 +1,4 @@
 enum AppState {
-    starter = 'starter',
     addLogin = 'addLogin',
     login = 'login',
     bulk = 'bulk',
@@ -13,7 +12,8 @@ enum AppState {
     cdAttachment = 'cdAttachment',
     quoteWrap = 'quoteWrap',
     bulkAdd = 'bulkAdd',
-    totp = 'totp'
+    totp = 'totp',
+    pwd = 'pwd'
 }
 
 export default AppState;

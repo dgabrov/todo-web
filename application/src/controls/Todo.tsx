@@ -4,7 +4,7 @@ import Store from "../data/store/store";
 import TodoPropsData from "../data/props/todo/todo-props-data";
 import TodoPropsCallback from "../data/props/todo/todo-props-callback";
 import {connect} from "react-redux";
-import {NONE, HOT_FIELD_DUE, HOT_FIELD_PRIORITY, textAreaHeightSmall} from "../util/constants";
+import {HOT_FIELD_DUE, HOT_FIELD_PRIORITY, NONE, textAreaHeightSmall} from "../util/constants";
 import PersonData from "../data/value/person-data";
 import {formatDate, processKeyDown, setFocus} from "../util/util-ui-functions";
 import AddTodoData from "../data/value/add-todo-data";

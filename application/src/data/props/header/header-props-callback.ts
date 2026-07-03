@@ -12,4 +12,6 @@ export default interface HeaderPropsCallback {
     quoteWrap(): void;
 
     totp(): void;
+
+    pwd(): void;
 }
