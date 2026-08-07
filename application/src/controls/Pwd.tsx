@@ -44,8 +44,8 @@ const Pwd = (props: PwdProps) => {
         setData({passwords: []})
     }
 
-    const save = () => {
-        setPasswordData(personId, password, data).catch((err) => {
+    const save = async () => {
+        await setPasswordData(personId, password, data).catch((err) => {
             props.error(err.message)
         })
     }
@@ -134,6 +134,20 @@ const Pwd = (props: PwdProps) => {
         return res
     }
 
+    const getCommentValue = (id: string): string => {
+        let res = ''
+
+        data.passwords.forEach((pw) => {
+            pw.secrets.forEach((secret) => {
+                if (secret.id === id) {
+                    res = secret.comment;
+                }
+            })
+        })
+
+        return res
+    }
+
     const setItemValue = (id: string, isUser: boolean) => {
         return (event: any)=> {
             const val = event.target.value
@@ -152,6 +166,23 @@ const Pwd = (props: PwdProps) => {
             })
 
             // and now set the new data to the value
+            setData(newData);
+        }
+    }
+
+    const setCommentValue = (id: string) => {
+        return (event: any) => {
+            const val = event.target.value
+
+            const newData = {...data};
+            newData.passwords.forEach((pw) => {
+                pw.secrets.forEach((secret) => {
+                    if (secret.id === id) {
+                        secret.comment = val
+                    }
+                })
+            })
+
             setData(newData);
         }
     }
@@ -188,12 +219,11 @@ const Pwd = (props: PwdProps) => {
         return (event: any) => {
             event.preventDefault()
 
-            // for that particular group, add a password group with placeholders
             const newData = {...data};
             newData.passwords.forEach((pw) => {
                 if(pw.id === id) {
                     pw.secrets.push({
-                        id: v4(), username: '', password: ''
+                        id: v4(), username: '', password: '', comment: ''
                     })
                 }
             })
@@ -251,6 +281,7 @@ const Pwd = (props: PwdProps) => {
         let rows: any = <div className="text-muted">no secrets</div>
         if (secret.secrets?.length > 0) {
             rows = secret.secrets.map((item) => {
+                let comment: any = ''
                 let username : any = item.username
                 let password : any = item.password
                 let usernameActions: any = ''
@@ -263,6 +294,7 @@ const Pwd = (props: PwdProps) => {
                 const isPasswordCopied = copiedIds.has(passwordCopyId);
 
                 if (editing){
+                    comment = <input type="text" className="form-control form-control-sm" value={getCommentValue(item.id)} onChange={setCommentValue(item.id)} placeholder="Comment"/>
                     username = <input type="text" className="form-control form-control-sm" value={getSecretValue(item.id, true)} onChange={setItemValue(item.id, true)} placeholder="Username"/>
                     const passwordInputType = isSecretVisible(item.id) ? 'text' : 'password'
                     password = <input type={passwordInputType} className="form-control form-control-sm" value={getSecretValue(item.id, false)} onChange={setItemValue(item.id, false)} placeholder="Password"/>
@@ -299,11 +331,25 @@ const Pwd = (props: PwdProps) => {
                     <div>{username}{usernameActions}</div>
                 );
 
-                return (<div key={item.id} className="d-flex align-items-center mb-2">
-                    {usernameDisplay}
-                    <span className="mx-2">-</span>
-                    {passwordDisplay}
-                    {deleteLink && <div className="ml-2">{deleteLink}</div>}
+                const commentDisplay = editing ? (
+                    <div style={{marginRight: '8px'}}>
+                        {comment}
+                    </div>
+                ) : (
+                    <div>
+                        {item.comment}
+                    </div>
+                );
+
+                return (<div key={item.id} className="mb-2">
+                    <div className="d-flex align-items-center">
+                        {commentDisplay}
+                        <span className="mx-2">-</span>
+                        {usernameDisplay}
+                        <span className="mx-2">-</span>
+                        {passwordDisplay}
+                        {deleteLink && <div className="ml-2">{deleteLink}</div>}
+                    </div>
                 </div>)
             })
         }

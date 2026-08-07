@@ -52,5 +52,5 @@
     "typescript": "^4.9.5"
   },
   "homepage": "/todo",
-  "proxy": "http://localhost:3001/"
+  "proxy": "http://localhost:3001"
 }
