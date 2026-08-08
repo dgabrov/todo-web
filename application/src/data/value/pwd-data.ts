@@ -1,5 +1,6 @@
 export interface Secret {
     id: string;
+    comment: string;
     username: string;
     password: string;
 }
